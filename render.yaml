@@ -1,0 +1,128 @@
+services:
+  - type: web
+    name: sh-auth-service
+    runtime: docker
+    dockerfilePath: ./backend/auth_service/Dockerfile
+    dockerContext: ./backend/auth_service
+    plan: free
+    envVars:
+      - key: PORT
+        value: "3001"
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: "5432"
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: studyhub_auth_db
+      - key: JWT_ACCESS_SECRET
+        sync: false
+      - key: REDIS_HOST
+        sync: false
+      - key: REDIS_PORT
+        sync: false
+      - key: REDIS_PASSWORD
+        sync: false
+  
+  - type: web
+    name: sh-user-service
+    runtime: docker
+    dockerfilePath: ./backend/user_service/Dockerfile
+    dockerContext: ./backend/user_service
+    plan: free
+    envVars:
+      - key: PORT
+        value: "3002"
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: "5432"
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: studyhub_user_db
+      - key: JWT_ACCESS_SECRET
+        sync: false
+
+  - type: web
+    name: sh-group-service
+    runtime: docker
+    dockerfilePath: ./backend/group_service/Dockerfile
+    dockerContext: ./backend/group_service
+    plan: free
+    envVars:
+      - key: PORT
+        value: "3003"
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: "5432"
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: studyhub_group_db
+      - key: JWT_ACCESS_SECRET
+        sync: false
+
+  - type: web
+    name: sh-document-service
+    runtime: docker
+    dockerfilePath: ./backend/document_service/Dockerfile
+    dockerContext: ./backend/document_service
+    plan: free
+    envVars:
+      - key: PORT
+        value: "3004"
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: "5432"
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: studyhub_document_db
+      - key: JWT_ACCESS_SECRET
+        sync: false
+
+  - type: web
+    name: sh-notification-service
+    runtime: docker
+    dockerfilePath: ./backend/notification_service/Dockerfile
+    dockerContext: ./backend/notification_service
+    plan: free
+    envVars:
+      - key: PORT
+        value: "3005"
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_ACCESS_SECRET
+        sync: false
+
+  - type: web
+    name: sh-chat-service
+    runtime: docker
+    dockerfilePath: ./backend/chat_service/Dockerfile
+    dockerContext: ./backend/chat_service
+    plan: free
+    envVars:
+      - key: PORT
+        value: "3006"
+      - key: MONGO_URI
+        sync: false
+      - key: REDIS_HOST
+        sync: false
+      - key: REDIS_PORT
+        sync: false
+      - key: REDIS_PASSWORD
+        sync: false
+      - key: JWT_ACCESS_SECRET
+        sync: false
