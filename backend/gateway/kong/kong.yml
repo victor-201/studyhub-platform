@@ -1,0 +1,109 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+  - name: auth-service
+    url: http://sh-auth-service.onrender.com
+    routes:
+      - name: auth-routes
+        paths:
+          - /api/v1/auth
+        strip_path: false
+        methods:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+
+  - name: user-service
+    url: http://sh-user-service.onrender.com
+    routes:
+      - name: user-routes
+        paths:
+          - /api/v1/user
+        strip_path: false
+        methods:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+
+  - name: group-service
+    url: http://sh-group-service.onrender.com
+    routes:
+      - name: group-routes
+        paths:
+          - /api/v1/group
+        strip_path: false
+        methods:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+
+  - name: document-service
+    url: http://sh-document-service.onrender.com
+    routes:
+      - name: document-routes
+        paths:
+          - /api/v1/document
+        strip_path: false
+        methods:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+
+  - name: chat-service
+    url: http://sh-chat-service.onrender.com
+    routes:
+      - name: chat-routes
+        paths:
+          - /api/v1/chat
+        strip_path: false
+        methods:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+
+  - name: notification-service
+    url: http://sh-notification-service.onrender.com
+    routes:
+      - name: notification-routes
+        paths:
+          - /api/v1/notification
+        strip_path: false
+        methods:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+
+plugins:
+  - name: cors
+    config:
+      origins:
+        - "*"
+      methods:
+        - GET
+        - POST
+        - PUT
+        - PATCH
+        - DELETE
+        - OPTIONS
+      headers:
+        - Accept
+        - Authorization
+        - Content-Type
+        - X-Requested-With
+      exposed_headers:
+        - X-Auth-Token
+      credentials: true
+      max_age: 3600

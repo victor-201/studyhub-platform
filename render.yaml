@@ -154,6 +154,16 @@ services:
         sync: false
 
   - type: web
+    name: sh-api-gateway
+    runtime: docker
+    dockerfilePath: ./backend/gateway/Dockerfile
+    dockerContext: ./backend/gateway
+    plan: free
+    envVars:
+      - key: PORT
+        value: "8000"
+
+  - type: web
     name: sh-chat-service
     runtime: docker
     dockerfilePath: ./backend/chat_service/Dockerfile
