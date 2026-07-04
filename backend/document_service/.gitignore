@@ -1,7 +1,7 @@
 node_modules/
 .env
 *.log
-*.lock
+# *.lock
 database/seeds/*.sql
 database/schemas/*.sql
 .gitkeep
