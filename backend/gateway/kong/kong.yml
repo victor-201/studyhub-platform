@@ -2,6 +2,18 @@ _format_version: "3.0"
 _transform: true
 
 services:
+  # Health check endpoint (returns 200 for Render health checks)
+  - name: health-service
+    url: http://httpbin.org/anything
+    routes:
+      - name: health-route
+        paths:
+          - /health
+        strip_path: false
+        methods:
+          - GET
+
+
   - name: auth-service
     url: http://sh-auth-service.onrender.com
     routes:
