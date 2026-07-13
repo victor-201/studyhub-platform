@@ -79,13 +79,14 @@ npm run dev
 SQL schemas and seed data are in `database/`:
 
 ```bash
-# Import schema
+# MySQL (local development)
 mysql -h localhost -u root -p auth_db < database/schemas/auth_db.sql
 mysql -h localhost -u root -p user_db < database/schemas/user_db.sql
 # ... repeat for group_db, document_db
-
-# Seed data
 mysql -h localhost -u root -p auth_db < database/seeds/auth_db_seed.sql
+
+# PostgreSQL (production)
+psql -h <host> -U <user> -d studyhub_auth_db < database/seeds/auth_db_seed_pg.sql
 ```
 
 MongoDB collections are created automatically by Mongoose on first run.
