@@ -11,7 +11,6 @@ const api_prefix = "/api/v1";
 
 const apiClient = axios.create({
   baseURL: BASE + api_prefix,
-  withCredentials: true,
   headers: {
     Accept: "application/json",
   },
@@ -57,8 +56,7 @@ apiClient.interceptors.response.use(
         // IMPORTANT: refresh không dùng apiClient để tránh loop
         const refreshRes = await axios.post(
           `${BASE}${api_prefix}/auth/refresh`,
-          { refresh_token: refreshToken },
-          { withCredentials: true }
+          { refresh_token: refreshToken }
         );
 
         const newAccess = refreshRes.data?.access_token;
