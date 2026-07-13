@@ -219,27 +219,5 @@ jobs:
           path: frontend/web/dist/
           retention-days: 7
 
-  frontend-deploy:
-    name: Frontend → Cloudflare Pages
-    needs: frontend-quality
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: frontend-dist-${{ github.sha }}
-          path: frontend/web/dist/
-
-      - uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: studyhub-platform
-          directory: frontend/web/dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+  # Deployed directly via Cloudflare Pages auto-deploy from GitHub repo
+  # (no secrets required in GitHub Actions)
