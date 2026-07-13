@@ -4,16 +4,37 @@ on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/keep-warm.yml"
+      - "backend/gateway/**"
+      - "frontend/**"
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          curl -s --max-time 30 "https://sh-api-gateway.onrender.com/health" > /dev/null
-          curl -s --max-time 30 "https://sh-auth-service.onrender.com/health" > /dev/null
-          curl -s --max-time 30 "https://sh-document-service.onrender.com/health" > /dev/null
-          curl -s --max-time 30 "https://sh-user-service.onrender.com/health" > /dev/null
-          curl -s --max-time 30 "https://sh-group-service.onrender.com/health" > /dev/null
-          curl -s --max-time 30 "https://sh-chat-service.onrender.com/health" > /dev/null
-          curl -s --max-time 30 "https://sh-notification-service.onrender.com/health" > /dev/null
+      - name: Ping all services
+        run: |
+          set +e
+          for url in \
+            https://sh-api-gateway.onrender.com/health \
+            https://sh-auth-service.onrender.com/health \
+            https://sh-document-service.onrender.com/health \
+            https://sh-user-service.onrender.com/health \
+            https://sh-group-service.onrender.com/health \
+            https://sh-chat-service.onrender.com/health \
+            https://sh-notification-service.onrender.com/health
+          do
+            echo "Pinging $url ..."
+            for i in 1 2 3; do
+              code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 60 "$url")
+              if [ "$code" = "200" ]; then
+                echo "  OK ($code)"
+                break
+              fi
+              echo "  attempt $i: $code, waiting 20s..."
+              sleep 20
+            done
+          done
