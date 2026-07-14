@@ -4,7 +4,7 @@ _transform: true
 services:
   # Health check endpoint (returns 200 for Render health checks)
   - name: health-service
-    url: https://httpbin.org/anything
+    url: https://sh-auth-service.onrender.com/health
     routes:
       - name: health-route
         paths:
