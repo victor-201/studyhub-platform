@@ -1,4 +1,4 @@
-FROM kong:3.6
+FROM public.ecr.aws/kong/kong:3.6
 
 COPY kong/kong.yml /usr/local/kong/declarative/kong.yml
 
