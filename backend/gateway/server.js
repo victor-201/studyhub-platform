@@ -8,7 +8,7 @@ app.use(express.json());
 const PORT = process.env.PORT || 8000;
 
 const ALLOWED_ORIGINS = [
-  "https://studyhub-platform.pages.dev",
+  "https://victor-studyhub.pages.dev",
   "http://localhost:5173",
 ];
 

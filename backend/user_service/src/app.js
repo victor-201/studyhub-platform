@@ -29,7 +29,7 @@ export function createApp() {
   // Middleware cơ bản
   app.use(helmet());
   app.use(cors({
-    origin: ["https://studyhub-platform.pages.dev", "http://localhost:5173"],
+    origin: ["https://victor-studyhub.pages.dev", "http://localhost:5173"],
     credentials: true,
   }));
   app.use(morgan("dev"));

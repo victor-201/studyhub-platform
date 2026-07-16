@@ -10,7 +10,7 @@ import { env } from "../config/env.js";
 export function createSocketServer(server, deps) {
     const io = new Server(server, {
         cors: {
-            origin: ["https://studyhub-platform.pages.dev", "http://localhost:5173"],
+            origin: ["https://victor-studyhub.pages.dev", "http://localhost:5173"],
             methods: ["GET", "POST"],
             credentials: true,
         },
