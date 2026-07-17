@@ -2,6 +2,7 @@ import { pool } from "../config/db.js";
 
 const migrations = [
   `ALTER TABLE groups ADD COLUMN IF NOT EXISTS access VARCHAR(20) DEFAULT 'PUBLIC' NOT NULL`,
+  `ALTER TABLE groups ADD COLUMN IF NOT EXISTS auto_approve_docs SMALLINT DEFAULT 0 NOT NULL`,
 ];
 
 export async function runMigrations() {
