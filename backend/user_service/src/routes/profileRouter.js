@@ -11,6 +11,7 @@ export function createProfileRouter({ profileService }) {
     controller.searchUsers.bind(controller)
   );
   router.get("/:user_id", controller.getInfo.bind(controller));
+  router.post("/sync", controller.syncUser.bind(controller));
 
   router.get(
     "/detail/:user_id",

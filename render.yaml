@@ -40,6 +40,8 @@ services:
         sync: false
       - key: REDIS_PASSWORD
         sync: false
+      - key: USER_SERVICE_URL
+        value: "https://sh-user-service.onrender.com"
   
   - type: web
     name: sh-user-service

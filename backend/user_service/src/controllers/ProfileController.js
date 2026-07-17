@@ -14,13 +14,27 @@ export class ProfileController {
     this.updateAvatar = [upload.single("avatar"), this.updateAvatar.bind(this)];
   }
 
+  /** Sync user from auth service (internal) */
+  async syncUser(req, res) {
+    try {
+      const user = await this.profileService.syncUser(req.body);
+      res.status(201).json(user);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+
   /** Get info */
   async getInfo({ params }, res) {
     try {
       const profile = await this.profileService.getInfo(params.user_id);
       res.json(profile);
     } catch (err) {
-      res.status(400).json({ error: err.message });
+      if (err.message === "User not found") {
+        res.status(404).json({ error: err.message });
+      } else {
+        res.status(500).json({ error: "Internal server error" });
+      }
     }
   }
 

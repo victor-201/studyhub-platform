@@ -34,6 +34,9 @@ export const env = {
   // ===== RabbitMQ =====
   RABBITMQ_URL: process.env.RABBITMQ_URL || "",
   RABBITMQ_EXCHANGE: process.env.RABBITMQ_EXCHANGE || "studyhub_exchange",
+
+  // ===== User Service (direct sync fallback) =====
+  USER_SERVICE_URL: process.env.USER_SERVICE_URL || "",
 };
 
 export default env;

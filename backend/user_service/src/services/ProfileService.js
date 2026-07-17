@@ -39,6 +39,10 @@ export class ProfileService {
     return { user };
   }
 
+  async syncUser(data) {
+    return this.userRepo.createUser(data);
+  }
+
   /**
    * @param {string} target_user_id - ID of the profile owner
    * @param {string} viewer_id - ID of the viewer

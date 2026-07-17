@@ -27,7 +27,7 @@ export class DocumentController {
 
       return res.json(result);
     } catch (err) {
-      return res.status(400).json({ error: err.message });
+      return res.status(500).json({ error: err.message });
     }
   }
 
@@ -39,7 +39,7 @@ export class DocumentController {
       const counts = await this.documentService.countDocuments();
       return res.json(counts);
     } catch (err) {
-      return res.status(400).json({ error: err.message });
+      return res.status(500).json({ error: err.message });
     }
   }
 
@@ -48,7 +48,7 @@ export class DocumentController {
       const counts = await this.documentService.countComments();
       return res.json(counts);
     } catch (err) {
-      return res.status(400).json({ error: err.message });
+      return res.status(500).json({ error: err.message });
     }
   }
 
@@ -101,7 +101,7 @@ export class DocumentController {
 
       return res.json(docs);
     } catch (err) {
-      return res.status(400).json({ error: err.message });
+      return res.status(500).json({ error: err.message });
     }
   }
 
@@ -120,7 +120,7 @@ export class DocumentController {
 
       return res.json(docs);
     } catch (err) {
-      return res.status(400).json({ error: err.message });
+      return res.status(500).json({ error: err.message });
     }
   }
 
@@ -129,7 +129,7 @@ export class DocumentController {
       const docs = await this.documentService.getMyDocuments(req.user.id);
       return res.json(docs);
     } catch (err) {
-      return res.status(400).json({ error: err.message });
+      return res.status(500).json({ error: err.message });
     }
   }
 
@@ -200,7 +200,7 @@ export class DocumentController {
       const docs = await this.documentService.getApprovedDocuments();
       return res.json(docs);
     } catch (err) {
-      return res.status(400).json({ error: err.message });
+      return res.status(500).json({ error: err.message });
     }
   }
 
@@ -212,7 +212,7 @@ export class DocumentController {
       );
       return res.json(docs);
     } catch (err) {
-      return res.status(400).json({ error: err.message });
+      return res.status(500).json({ error: err.message });
     }
   }
 
@@ -277,7 +277,7 @@ export class DocumentController {
       return res.json(results);
     } catch (err) {
       console.error("Search error:", err);
-      return res.status(400).json({ error: err.message });
+      return res.status(500).json({ error: err.message });
     }
   }
   
@@ -289,7 +289,7 @@ export class DocumentController {
       const tags = await this.documentService.getAllTags();
       return res.json(tags);
     } catch (err) {
-      return res.status(400).json({ error: err.message });
+      return res.status(500).json({ error: err.message });
     }
   }
 }
